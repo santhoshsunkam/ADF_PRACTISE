@@ -1,0 +1,104 @@
+{
+	"name": "dftask3",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dssqldbSink",
+						"type": "DatasetReference"
+					},
+					"name": "customerdata"
+				},
+				{
+					"dataset": {
+						"referenceName": "dsadls",
+						"type": "DatasetReference"
+					},
+					"name": "ordersdata"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dsoutputsink",
+						"type": "DatasetReference"
+					},
+					"name": "sinkasoutput"
+				}
+			],
+			"transformations": [
+				{
+					"name": "innerjoin"
+				},
+				{
+					"name": "select"
+				},
+				{
+					"name": "filtercity"
+				},
+				{
+					"name": "sortbyfname"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          customer_id as string,",
+				"          customer_fname as string,",
+				"          customer_lname as string,",
+				"          customer_email as string,",
+				"          customer_password as string,",
+				"          customer_street as string,",
+				"          customer_city as string,",
+				"          customer_state as string,",
+				"          customer_zipcode as string",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> customerdata",
+				"source(output(",
+				"          order_id as string,",
+				"          order_date as string,",
+				"          order_customer_id as string,",
+				"          order_status as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ordersdata",
+				"customerdata, ordersdata join(customer_id == order_customer_id,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> innerjoin",
+				"innerjoin select(mapColumn(",
+				"          customer_id,",
+				"          customer_fname,",
+				"          customer_lname,",
+				"          customer_street,",
+				"          customer_city,",
+				"          customer_state,",
+				"          customer_zipcode,",
+				"          order_id,",
+				"          order_date,",
+				"          order_status",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select",
+				"select filter(customer_city == \"Caguas\") ~> filtercity",
+				"filtercity sort(asc(customer_fname, true)) ~> sortbyfname",
+				"sortbyfname sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['task3transformeddata.csv'],",
+				"     truncate: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sinkasoutput"
+			]
+		}
+	}
+}

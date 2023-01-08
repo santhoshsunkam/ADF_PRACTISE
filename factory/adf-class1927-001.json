@@ -1,0 +1,9 @@
+{
+	"name": "adf-class1927-001",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "c6f3e610-201b-4c50-bcc2-e277ede8f7c9",
+		"tenantId": "8bc4a72a-aff1-4ed0-a126-531a958b770a"
+	}
+}
