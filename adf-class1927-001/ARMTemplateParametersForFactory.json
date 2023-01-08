@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-class1927-001"
+		},
+		"lsadls_accountKey": {
+			"value": ""
+		},
+		"lssqldb_connectionString": {
+			"value": ""
+		},
+		"lsadls_properties_typeProperties_url": {
+			"value": "https://saclass1adf.dfs.core.windows.net/"
+		},
+		"lshttp_properties_typeProperties_url": {
+			"value": "https://files.cdn.thinkific.com"
+		}
+	}
+}
