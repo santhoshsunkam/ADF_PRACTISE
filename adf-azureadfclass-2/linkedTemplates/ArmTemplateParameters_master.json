@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-azureadfclass-2"
+		},
+		"lsadlsgen2_accountKey": {
+			"value": ""
+		},
+		"lsblob_connectionString": {
+			"value": ""
+		},
+		"lsadlsgen2_properties_typeProperties_url": {
+			"value": "https://saadlsclass2.dfs.core.windows.net/"
+		},
+		"lshttps_properties_typeProperties_url": {
+			"value": "@{linkedService().BaseURL}"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
