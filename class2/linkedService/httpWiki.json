@@ -1,0 +1,12 @@
+{
+	"name": "httpWiki",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://en.wikipedia.org/wiki/World_population#Largest_populations_by_country",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
