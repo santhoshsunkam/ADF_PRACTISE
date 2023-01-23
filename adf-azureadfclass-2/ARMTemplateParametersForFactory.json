@@ -16,6 +16,9 @@
 		},
 		"lshttps_properties_typeProperties_url": {
 			"value": "@{linkedService().BaseURL}"
+		},
+		"httpWiki_properties_typeProperties_url": {
+			"value": "https://www.kaggle.com/datasets/ahbab911/top-250-korean-dramas-kdrama-dataset"
 		}
 	}
 }
