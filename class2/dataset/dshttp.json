@@ -1,0 +1,37 @@
+{
+	"name": "dshttp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsblob",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "requirement.csv",
+				"container": "configuration"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "baseurl",
+				"type": "String"
+			},
+			{
+				"name": "relativeurl",
+				"type": "String"
+			},
+			{
+				"name": "filename",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

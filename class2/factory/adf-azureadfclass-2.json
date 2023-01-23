@@ -1,0 +1,9 @@
+{
+	"name": "adf-azureadfclass-2",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d28592a0-debf-488c-9cb4-2f2293f3a7eb",
+		"tenantId": "8bc4a72a-aff1-4ed0-a126-531a958b770a"
+	}
+}
